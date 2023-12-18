@@ -1,0 +1,42 @@
+version: '3'
+services:
+  sbt-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASS: yourpassword
+      DB_NAME: bankloan
+    ports:
+      - "3002:3000"
+    depends_on:
+      - mysql-db
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: yourpassword
+      MYSQL_DATABASE: bankloan
+      MYSQL_USER: siddharth
+      MYSQL_PASSWORD: yourpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - ./data:/var/lib/mysql-files
+    command:
+      --secure-file-priv=/var/lib/mysql-files
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mysql-db
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./graphana:/etc/grafana/provisioning/dashboards
+
+volumes:
+  grafana-data:
