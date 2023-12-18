@@ -1,0 +1,17 @@
+---
+title: "Bank Data Analysis"
+author:
+  - name: Siddharth D
+  - name: Abinaya N 
+  - name: Sanjana MCS
+format:
+  pdf:
+    documentclass: scrartcl
+    papersize: letter
+    toc: true
+    number-sections: true
+    colorlinks: true
+    highlight-style: github
+truejupyter: python3
+---
+
