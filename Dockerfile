@@ -2,9 +2,8 @@
 FROM mozilla/sbt:latest as build
 
 WORKDIR /app
-RUN apt install git
-# Clone the git repo
-RUN git clone https://github.com/ronith256/bigdataproj.git /app
+
+COPY . /app
 
 # Compile the project using sbt
 RUN sbt compile

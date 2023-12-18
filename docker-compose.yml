@@ -36,7 +36,8 @@ services:
       - mysql-db
     volumes:
       - grafana-data:/var/lib/grafana
-      - ./graphana:/etc/grafana/provisioning/dashboards
+      - ./graphana/datasources:/etc/grafana/provisioning/datasources
+      - ./graphana/dashboards:/etc/grafana/provisioning/dashboards
 
 volumes:
   grafana-data:
